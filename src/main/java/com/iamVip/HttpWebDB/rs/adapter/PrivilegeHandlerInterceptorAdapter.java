@@ -44,8 +44,8 @@ public class PrivilegeHandlerInterceptorAdapter extends HandlerInterceptorAdapte
 			String methodName = method.getMethod().getName();
 			
 			StringBuffer buf = new StringBuffer();
-			buf.append("RequestURI " + request.getRequestURI() + LINE);
-			//buf.append("RequestURL " + request.getRequestURL() + LINE);
+			//buf.append("RequestURI " + request.getRequestURI() + LINE);
+			buf.append("RequestURL " + request.getRequestURL() + LINE);
 			buf.append("Execute " + className + "." + methodName);
 			System.out.println(buf);
 
