@@ -13,6 +13,7 @@ import javax.servlet.http.HttpSession;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.ModelMap;
+import org.springframework.web.bind.annotation.PathVariable;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseBody;
 
@@ -47,8 +48,23 @@ public class ClienteleApiRequest extends __Request implements IAPP {
 	@ResponseBody
 	@RequestMapping(value = { "query/count" })
 	public long queryCount(HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap modelMap) throws Exception {
-		clienteleApi.queryLimit(null, null);
+		Clientele param = new Clientele();
+		param.setClientName("222");
+		clienteleApi.queryLimit(null, param);
 		return System.currentTimeMillis();
+	}
+
+	@ResponseBody
+	@RequestMapping(value = { "query/key/map/{primaryKey}" })
+	public Map<String, Object> queryKeyMap(@PathVariable int primaryKey, HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap modelMap) throws Exception {
+		String columns = "clientName, company, link, maxTemplate, dateTime";
+		return super.toMap(clienteleApi.queryByKey(columns, primaryKey), columns);
+	}
+
+	@ResponseBody
+	@RequestMapping(value = { "query/key/{primaryKey}" })
+	public Clientele queryKey(@PathVariable int primaryKey, HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap modelMap) throws Exception {
+		return clienteleApi.queryByKey("clientName, company, link, maxTemplate, dateTime", primaryKey);
 	}
 
 	@ResponseBody
