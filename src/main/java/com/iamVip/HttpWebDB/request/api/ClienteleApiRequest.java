@@ -58,6 +58,10 @@ public class ClienteleApiRequest extends __Request implements IAPP {
 	@RequestMapping(value = { "query/key/map/{primaryKey}" })
 	public Map<String, Object> queryKeyMap(@PathVariable int primaryKey, HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap modelMap) throws Exception {
 		String columns = "clientName, company, link, maxTemplate, dateTime";
+		// super.toMap(clienteleApi.queryByKey(columns, primaryKey), columns);
+		// columns = "clientName, company, link, dateTime, status";
+		// super.toMap(clienteleApi.queryByKey(columns, primaryKey), columns);
+		// columns = "clientName, company, link, maxTemplate, clientID";
 		return super.toMap(clienteleApi.queryByKey(columns, primaryKey), columns);
 	}
 

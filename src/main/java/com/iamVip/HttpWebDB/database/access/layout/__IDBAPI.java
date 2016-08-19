@@ -59,7 +59,7 @@ public interface __IDBAPI<T> {
 	 * 查询单个 String = ${String}
 	 * @param columns 要查询的列
 	 */
-	T queryEq(String columns, T param);
+	T queryEq(@Param(value = "columns") String columns, T param);
 
 	/**
 	 * 查询多个 String LIKE CONCAT( '%', '${String}', '%' )
@@ -70,7 +70,7 @@ public interface __IDBAPI<T> {
 	 * 查询多个 String LIKE CONCAT( '%', '${String}', '%' )
 	 * @param columns 要查询的列
 	 */
-	List<T> queryMulti(String columns, T param);
+	List<T> queryMulti(@Param(value = "columns") String columns, T param);
 
 	/**
 	 * 查询多个 String = ${String}
@@ -80,7 +80,7 @@ public interface __IDBAPI<T> {
 	/**
 	 * 查询多个 String = ${String}
 	 */
-	List<T> queryMultiEq(String columns, T param);
+	List<T> queryMultiEq(@Param(value = "columns") String columns, T param);
 
 	/**
 	 * 分页查询 String LIKE CONCAT( '%', '${String}', '%' )
@@ -90,7 +90,7 @@ public interface __IDBAPI<T> {
 	/**
 	 * 分页查询 String LIKE CONCAT( '%', '${String}', '%' )
 	 */
-	List<T> queryLimit(String columns, PageParam page, T param);
+	List<T> queryLimit(@Param(value = "columns") String columns, PageParam page, T param);
 
 	/**
 	 * 分页查询 String = ${String}

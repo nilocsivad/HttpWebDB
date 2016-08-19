@@ -21,4 +21,22 @@ public class __Model implements Serializable {
 	public __Model() {
 	}
 
+	public static final String arr2(String... fields) {
+		if (fields.length == 0) {
+			return "*";
+		}
+		StringBuffer buf = new StringBuffer();
+		for (String field : fields) {
+			if (field != null && !"".equals(field)) {
+				buf.append(", " + field);
+			}
+		}
+		if (buf.length() > 0) {
+			return buf.substring(2).toString();
+		}
+		else {
+			return "*";
+		}
+	}
+
 }
