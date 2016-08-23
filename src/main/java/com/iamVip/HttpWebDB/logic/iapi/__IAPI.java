@@ -4,6 +4,7 @@
 package com.iamVip.HttpWebDB.logic.iapi;
 
 import java.util.List;
+import java.util.Map;
 
 import com.iamVip.HttpWebDB.rs.ref.PageParam;
 
@@ -97,5 +98,10 @@ public interface __IAPI<T> {
 	 * 分页查询 String = ${String}
 	 */
 	List<T> queryLimitEq(String columns, PageParam page, T param);
+
+
+	List<T> queryMethod(String methodName, Map<String, Object> map) throws Exception;
+
+	T querySingleMethod(String methodName, Map<String, Object> map) throws Exception;
 
 }

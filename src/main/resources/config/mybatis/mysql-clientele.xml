@@ -46,6 +46,12 @@
 		WHERE clientID = #{primaryKey}
 	</select>
 
+	<select id="queryByKey2" parameterType="java.util.Map" resultMap="ClienteleMap">
+		SELECT ${columns} FROM
+		<include refid="TABLE_NAME" />
+		WHERE clientID = #{primaryKey}
+	</select>
+
 
 
 	<select id="queryCount" resultType="java.lang.Long">

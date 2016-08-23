@@ -3,7 +3,10 @@
  */
 package com.iamVip.HttpWebDB.logic.api.impl;
 
+import java.lang.reflect.Method;
+import java.util.ArrayList;
 import java.util.List;
+import java.util.Map;
 
 import org.springframework.transaction.annotation.Transactional;
 import org.springframework.transaction.interceptor.TransactionAspectSupport;
@@ -275,6 +278,36 @@ public abstract class __APIDefaultImpl<T> implements __IAPI<T> {
 	public List<T> queryLimitEq(String columns, PageParam page, T param) {
 		// TODO Auto-generated method stub
 		return null;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.iamVip.HttpWebDB.logic.iapi.__IAPI#queryMethod(java.lang.String, java.util.Map)
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public List<T> queryMethod(String methodName, Map<String, Object> map) throws Exception {
+		__IDBAPI<T> dbApi = this.getDBApi();
+		Method method = dbApi.getClass().getDeclaredMethod(methodName, Map.class);
+		Object obj = method.invoke(dbApi, map);
+		if (obj == null)
+			return new ArrayList<T>(0);
+		return (List<T>) obj;
+	}
+
+	/*
+	 * (non-Javadoc)
+	 * @see com.iamVip.HttpWebDB.logic.iapi.__IAPI#querySingleMethod(java.lang.String, java.util.Map)
+	 */
+	@Override
+	@SuppressWarnings("unchecked")
+	public T querySingleMethod(String methodName, Map<String, Object> map) throws Exception {
+		__IDBAPI<T> dbApi = this.getDBApi();
+		Method method = dbApi.getClass().getDeclaredMethod(methodName, Map.class);
+		Object obj = method.invoke(dbApi, map);
+		if (obj == null)
+			return null;
+		return (T) obj;
 	}
 
 }

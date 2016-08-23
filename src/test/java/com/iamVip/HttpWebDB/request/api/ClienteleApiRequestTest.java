@@ -35,6 +35,11 @@ public class ClienteleApiRequestTest extends __RequestTest {
 	}
 
 	@Test
+	public void queryMap() throws Exception {
+		this.executeHttp("/api/clientele/query/map/10024");
+	}
+
+	@Test
 	public void queryLimit() throws Exception {
 		this.executeHttp("/api/clientele/query");
 	}

@@ -72,6 +72,14 @@ public class ClienteleApiRequest extends __Request implements IAPP {
 	}
 
 	@ResponseBody
+	@RequestMapping(value = { "query/map/{primaryKey}" })
+	public Clientele queryMap(@PathVariable int primaryKey, HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap modelMap) throws Exception {
+		Map<String, Object> map = new HashMap<String, Object>();
+		map.put("primaryKey", primaryKey);
+		return clienteleApi.querySingleMethod("queryByKey2", map);
+	}
+
+	@ResponseBody
 	@RequestMapping(value = { "more" })
 	public Map<String, Object> moreClientele(HttpServletRequest request, HttpSession session, HttpServletResponse response, ModelMap modelMap, Clientele client, Login login) throws Exception {
 
