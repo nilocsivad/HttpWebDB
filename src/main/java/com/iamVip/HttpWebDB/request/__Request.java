@@ -10,6 +10,7 @@ import java.util.Map;
 import javax.servlet.http.HttpServletRequest;
 import javax.servlet.http.HttpServletResponse;
 
+import com.iamVip.HttpWebDB.logic.model.__Model;
 import com.iamVip.HttpWebDB.rs.c.IAPP;
 
 /**
@@ -52,7 +53,7 @@ public class __Request implements IAPP {
 
 	public <T> Map<String, Object> toMap(T obj, String... fields) throws SecurityException, IllegalArgumentException, IllegalAccessException {
 		Map<String, Object> map = new HashMap<String, Object>(fields.length + 1);
-		if (obj != null) {
+		if (obj != null && obj instanceof __Model) {
 			Class<?> cls = obj.getClass();
 			for (String key : fields) {
 				key = key.trim();
